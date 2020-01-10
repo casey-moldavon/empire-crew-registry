@@ -5,10 +5,30 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
 
+//========================= This is the 1st question (team name) =========================
+const teamName = async () => {
+  const teamResult = await inquirer.prompt([
+    {
+      type: "input",
+      name: "team",
+      message: "What would you like the Team name to be?"
+    }
+  ]);
+  const team = teamResult.team;
+  console.log("team name: " + team);
 
+  questions();
+}
+
+teamName();
+
+
+  //this function is triggered after the last prompt, asking user if they would like to add an additional team member.
   function addMember() {
     questions();
   }
+
+
 
   const everything = [];
 
@@ -41,7 +61,7 @@ const Manager = require("./lib/Manager");
     const title = userResult.title;
     const id = userResult.id;
     const email = userResult.email;
-    console.log("userResukt: " + userResult);
+    console.log("userResult: " + userResult);
     console.log("name: " + name);
     console.log("title: " + title);
     console.log("id: " + id);
@@ -108,9 +128,7 @@ const Manager = require("./lib/Manager");
 
       // call function (to ask for additional team members)
       queryToAddMoreTeam();
-    };
-
-    questions();
+  };
 
 
   const queryToAddMoreTeam = async (title) =>{
@@ -139,7 +157,7 @@ const Manager = require("./lib/Manager");
         };
       };
 
-      
+
       function quit(){
         console.log("\nGoodbye!");
         process.exit(0);
@@ -147,4 +165,8 @@ const Manager = require("./lib/Manager");
     };
 
 
-  // module.exports = Team;
+  // Explort the everything array (this contains all information)
+  // Self Note: every two array of objects is for one employee
+  // example: the first two array of objects:
+  //    [object object], [object object] will refer to the first team made created
+  module.exports = everything;
