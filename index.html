@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template Engine - Employee Summary</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .heading {
+            background-color: #c53737;
+            color: white;
+            width: 100%;
+            padding-top: 12px;
+            padding-bottom: 6px;
+
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .employee-card {
+            width: 225px;
+            height: 250px;
+            background-color: #e5e5e5;
+
+            margin: 25px;
+
+            border: 0.4px solid #246fc4;
+            border-radius: 3px;
+            box-shadow: 7px 7px 10px #999999;
+        }
+
+
+
+                .mini-header {
+                    background-color: #246fc4;
+                    color: white;
+
+                    border-top-left-radius: 3px;
+                    border-top-right-radius: 3px;
+
+                    margin-bottom: 20px;
+                    padding-top: 5px;
+                    padding-bottom: 10px;
+                }
+
+                    .name {
+                        padding: 0;
+                        margin: 0;
+                        margin-left: 20px;
+                        font-size: 30px;
+                    }
+                    .title {
+                        padding: 0;
+                        margin: 0;
+                        margin-left: 42px;
+                        font-size: 25px;
+                    }
+
+                .dem-stats {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                }
+
+                    .thingy {
+                        background-color: white;
+                        color: black;
+                        font-size: 20px;
+
+                        margin: 0;
+                        padding: 10px;
+                        border-radius: 3px;
+                        border: 0.5px solid gray;
+                    }
+    </style>
+
+</head>
+<body>
+
+    <div class="heading">
+        <h1>My Team</h1>
+    </div>
+    <div class="col">
+            <div class="employee-card">
+                <div class="mini-header">
+                    <p class="name">name</p>
+                    <p class="title">title</p>
+                </div>
+                <div class="dem-stats">
+                    <p class="thingy" id="id">ID</p>
+                    <p class="thingy" id="email">Email</p>
+                    <!-- this changes with each class -->
+                    <p class="thingy" id="third-thing">Other</p>
+                </div>
+            </div>
+    </div>
+
+    
+</body>
+</html>
