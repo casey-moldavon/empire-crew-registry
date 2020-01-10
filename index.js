@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Inter");
+const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
 
@@ -11,13 +11,13 @@ const Manager = require("./lib/Manager");
 //     this.answer = answer;
 //   }
 
-  function addMember() {
-    this.questions();
-  }
+  // function addMember() {
+  //   questions();
+  // }
 
-  function questions() {
-    inquirer
-      .prompt([
+  //========================= This is the 1st set of questions =========================
+  const questions = async () => {
+    const userResult = await inquirer.prompt([
         {
           type: "input",
           name: "name",
@@ -40,69 +40,100 @@ const Manager = require("./lib/Manager");
           message: "Please include Employee Email: "
         },
     ]);
+    const name = userResult.name;
+    const title = userResult.title;
+    const id = userResult.id;
+    const email = userResult.email;
+    console.log("userResukt: " + userResult);
+    console.log("name: " + name);
+    console.log("title: " + title);
+    console.log("id: " + id);
+    console.log("email: " + email);
+
+    questionsTwo()
   }
 
-    function conditional(title){
+
+  //========================= This is the 2nd set of questions (conditional: based on chosen title from 1st set) =========================
+  const questionsTwo = async (title) => {
       if (title === "Intern"){
-        inquirer
-          .prompt([
+        const internResult = await inquirer.prompt([
             {
               type: "input",
               name: "school",
               message: "Please list Intern's School: "
             }
           ])
+          const school = internResult.school;
+          console.log("internResult: " + internResult);
+          console.log("school: " + school);
       }
       else if (title === "Engineer"){
-        inquirer
-          .prompt([
+        const engineerResult = await inquirer.prompt([
             {
               type: "input",
               name: "github",
               message: "Please provide Engineer's GitHub username: "
             }
           ])
+          const github = engineerResult.github;
+          console.log("engineerResult: " + engineerResult);
+          console.log("github: " + github);
       }
       else {
-        inquirer
-          .prompt([
+        const managerResult = await inquirer.prompt([
             {
               type: "input",
-              name: "office number",
+              name: "officeNumber",
               message: "Please provide Office Number: "
             }
           ])
+          const officeNumber = managerResult.officeNumber;
+          console.log("managerResult: " + managerResult);
+          console.log("officeNumber: " + officeNumber);
       }
 
       // call function (to ask for additional team members)
-      askToAddMoreTeam()
+      // askToAddMoreTeam()
     };
-    conditional(title);
 
-  function askToAddMoreTeam(){
-    inquirer
-      .prompt([
-        {
-          type: "confirm",
-          name: "choice",
-          message: "Would you like to add more to you Team?"
-          // message: "Would you like to add an Employee to the Team?"
-        }
-      ])
+    questions()
 
-      .then(val => {
-        if (val.choice) {
-          this.addMember();
-        } else {
-          this.quit();
-        }
-      });
 
-    }
-      function quit(){
-        console.log("\nGoodbye!");
-        process.exit(0);
-      }
-  }
 
-  module.exports = Team;
+
+
+  //   conditional(title);
+
+  // function askToAddMoreTeam(){
+  //   inquirer
+  //     .prompt([
+  //       {
+  //         type: "confirm",
+  //         name: "choice",
+  //         message: "Would you like to add more to you Team?"
+  //         // message: "Would you like to add an Employee to the Team?"
+  //       }
+  //     ])
+
+  //     //this function should generate the html (card)
+  //     function generateHTML()
+
+  //     });
+
+  //     .then(val => {
+  //       if (val.choice) {
+  //         this.addMember();
+  //       } else {
+  //         this.quit();
+  //       }
+  //     });
+
+  //   }
+  //     function quit(){
+  //       console.log("\nGoodbye!");
+  //       process.exit(0);
+  //     }
+  // }
+
+  // module.exports = Team;
