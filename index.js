@@ -1,8 +1,10 @@
+const fs = require("fs");
+const axios = require("axios");
 const inquirer = require("inquirer");
-const Employee = require("./lib/Employee");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const Manager = require("./lib/Manager");
+// const Employee = require("./lib/Employee");
+// const Engineer = require("./lib/Engineer");
+// const Intern = require("./lib/Intern");
+// const Manager = require("./lib/Manager");
 
 
 //========================= This is the 1st question (team name) =========================
@@ -27,7 +29,6 @@ teamName();
   function addMember() {
     questions();
   }
-
 
 
   const everything = [];
@@ -56,6 +57,11 @@ teamName();
           name: "email",
           message: "Please include Employee Email: "
         },
+
+
+        //possibly place this here?
+        questionsTwo()
+
     ]);
     const name = userResult.name;
     const title = userResult.title;
@@ -71,6 +77,7 @@ teamName();
     everything.push(userResult);
     console.log("everything array: " + everything);
 
+    //as opposed to here
     questionsTwo(title);
   }
 
@@ -163,6 +170,33 @@ teamName();
         process.exit(0);
       }
     };
+
+
+    //generate the HTML after the first question (team name)
+    //then insert each employee card with every prompt (using js)...look at group project 1 for how to do this (search list)
+    function generateHTML(answers) {
+      return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+    </head>
+    <body>
+    </body>
+    </html>`;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
   // Explort the everything array (this contains all information)
