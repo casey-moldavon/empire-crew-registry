@@ -1,10 +1,11 @@
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-// const Employee = require("./lib/Employee");
-// const Engineer = require("./lib/Engineer");
-// const Intern = require("./lib/Intern");
-// const Manager = require("./lib/Manager");
+const util = require("util");
+const Employee = require("./lib/Employee");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
 
 
 //========================= This is the 1st question (team name) =========================
@@ -18,11 +19,11 @@ const teamName = async () => {
   ]);
   const team = teamResult.team;
   console.log("team name: " + team);
+    console.log("Successfully wrote to output.html");
 
   questions();
 }
-
-teamName();
+//Self Note: function above is called at the bottom of the page
 
 
   //this function is triggered after the last prompt, asking user if they would like to add an additional team member.
@@ -31,6 +32,7 @@ teamName();
   }
 
 
+  //this variable stores an array of objects (from employee prompts)
   const everything = [];
 
   //========================= This is the 1st set of questions =========================
@@ -58,10 +60,6 @@ teamName();
           message: "Please include Employee Email: "
         },
 
-
-        //possibly place this here?
-        questionsTwo()
-
     ]);
     const name = userResult.name;
     const title = userResult.title;
@@ -77,7 +75,7 @@ teamName();
     everything.push(userResult);
     console.log("everything array: " + everything);
 
-    //as opposed to here
+    // this goes to next set of questions
     questionsTwo(title);
   }
 
@@ -172,23 +170,135 @@ teamName();
     };
 
 
-    //generate the HTML after the first question (team name)
-    //then insert each employee card with every prompt (using js)...look at group project 1 for how to do this (search list)
-    function generateHTML(answers) {
+
+
+
+    const writeFileAsync = util.promisify(fs.writeFile);
+
+  //generate the HTML after the first question (team name)
+  //then insert each employee card with every prompt (using js)...look at group project 1 for how to do this (search list)
+  function generateHTML(answers) {
       return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Document</title>
-    </head>
-    <body>
-    </body>
-    </html>`;
-    }
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <title>Template Engine - Employee Summary</title>
+      
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+      
+          <style>
+      
+              body {
+                  margin: 0;
+                  padding: 0;
+              }
+      
+              .heading {
+                  background-color: #c53737;
+                  color: white;
+                  width: 100%;
+                  padding-top: 12px;
+                  padding-bottom: 6px;
+      
+                  font-weight: bold;
+                  font-size: 20px;
+                  text-align: center;
+              }
+      
+              .employee-card {
+                  width: 225px;
+                  height: 250px;
+                  background-color: #e5e5e5;
+      
+                  margin: 25px;
+      
+                  border: 0.4px solid #246fc4;
+                  border-radius: 3px;
+                  box-shadow: 7px 7px 10px #999999;
+              }
+      
+      
+                      .mini-header {
+                          background-color: #246fc4;
+                          color: white;
+      
+                          border-top-left-radius: 3px;
+                          border-top-right-radius: 3px;
+      
+                          margin-bottom: 20px;
+                          padding-top: 5px;
+                          padding-bottom: 10px;
+                      }
+      
+                          .name {
+                              padding: 0;
+                              margin: 0;
+                              margin-left: 20px;
+                              font-size: 36px;
+                          }
+                          .title {
+                              padding: 0;
+                              margin: 0;
+                              margin-left: 42px;
+                              font-size: 25px;
+                          }
+      
+                      .dem-stats {
+                          margin-top: 20px;
+                          margin-bottom: 20px;
+                          margin-left: 20px;
+                          margin-right: 20px;
+                      }
+      
+                          .thingy {
+                              background-color: white;
+                              color: black;
+                              font-size: 20px;
+      
+                              margin: 0;
+                              padding: 10px;
+                              border-radius: 3px;
+                              border: 0.5px solid gray;
+                          }
+          </style>
+      
+      </head>
+      <body>
+      
+          <div class="heading">
+              <h1>My Team: ${answers.team}</h1>
+          </div>
+          <div class="col">
+                  <div class="employee-card">
+                      <div class="mini-header">
+                          <p class="name">name</p>
+                          <p class="title">title</p>
+                      </div>
+                      <div class="dem-stats">
+                          <p class="thingy" id="id">ID</p>
+                          <p class="thingy" id="email">Email</p>
+                          <!-- this changes with each class -->
+                          <p class="thingy" id="third-thing">Other</p>
+                      </div>
+                  </div>
+          </div>
+      
+      </body>
+      </html>`;
+  }
 
+teamName()
+  .then(function(answers) {
+    const html = generateHTML(answers);
 
+    return writeFileAsync("./output/output.html", html);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 
 
 
