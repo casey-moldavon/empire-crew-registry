@@ -5,15 +5,12 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
 
-// class Team {
 
-//   constructor(answer) {
-//     this.answer = answer;
-//   }
+  function addMember() {
+    questions();
+  }
 
-  // function addMember() {
-  //   questions();
-  // }
+  const everything = [];
 
   //========================= This is the 1st set of questions =========================
   const questions = async () => {
@@ -50,7 +47,11 @@ const Manager = require("./lib/Manager");
     console.log("id: " + id);
     console.log("email: " + email);
 
-    questionsTwo()
+    // this adds to everything array (to store data)
+    everything.push(userResult);
+    console.log("everything array: " + everything);
+
+    questionsTwo(title);
   }
 
 
@@ -67,6 +68,10 @@ const Manager = require("./lib/Manager");
           const school = internResult.school;
           console.log("internResult: " + internResult);
           console.log("school: " + school);
+
+          //this adds to everything array (to store data)
+          everything.push(internResult);
+          console.log("everything array: " + everything);
       }
       else if (title === "Engineer"){
         const engineerResult = await inquirer.prompt([
@@ -79,6 +84,10 @@ const Manager = require("./lib/Manager");
           const github = engineerResult.github;
           console.log("engineerResult: " + engineerResult);
           console.log("github: " + github);
+
+          //this adds to everything array (to store data)
+          everything.push(engineerResult);
+          console.log("everything array: " + everything);
       }
       else {
         const managerResult = await inquirer.prompt([
@@ -91,49 +100,51 @@ const Manager = require("./lib/Manager");
           const officeNumber = managerResult.officeNumber;
           console.log("managerResult: " + managerResult);
           console.log("officeNumber: " + officeNumber);
+
+          // this adds to everything array (to store data)
+          everything.push(managerResult);
+          console.log("everything array: " + everything);
       }
 
       // call function (to ask for additional team members)
-      // askToAddMoreTeam()
+      queryToAddMoreTeam();
     };
 
-    questions()
+    questions();
 
 
+  const queryToAddMoreTeam = async (title) =>{
+    const queryChoice = await inquirer.prompt([
+        {
+          type: "list",
+          choices: ["Yes", "No"],
+          name: "choice",
+          message: "Would you like to add an additional Team member?"
+        }
+      ])
+      const choice = queryChoice.choice;
+      console.log("queryChoice: " + queryChoice);
+      console.log("choice: " + choice);
 
 
+      conditional();
 
-  //   conditional(title);
 
-  // function askToAddMoreTeam(){
-  //   inquirer
-  //     .prompt([
-  //       {
-  //         type: "confirm",
-  //         name: "choice",
-  //         message: "Would you like to add more to you Team?"
-  //         // message: "Would you like to add an Employee to the Team?"
-  //       }
-  //     ])
+      function conditional(){
+        if (choice === "Yes"){
+          addMember();
+        }
+        else {
+          quit();
+        };
+      };
 
-  //     //this function should generate the html (card)
-  //     function generateHTML()
+      
+      function quit(){
+        console.log("\nGoodbye!");
+        process.exit(0);
+      }
+    };
 
-  //     });
-
-  //     .then(val => {
-  //       if (val.choice) {
-  //         this.addMember();
-  //       } else {
-  //         this.quit();
-  //       }
-  //     });
-
-  //   }
-  //     function quit(){
-  //       console.log("\nGoodbye!");
-  //       process.exit(0);
-  //     }
-  // }
 
   // module.exports = Team;
