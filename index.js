@@ -126,7 +126,7 @@ const Manager = require("./lib/Manager");
       console.log("queryChoice: " + queryChoice);
       console.log("choice: " + choice);
 
-
+      
       conditional();
 
 
