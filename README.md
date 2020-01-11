@@ -17,6 +17,8 @@ Started writing the app like any other, creating the needed files and folders: i
 
 ![image](images/10-OOP-homework-demo-1.png)
 
+![image](images/final-demo-image.png)
+
 Sadly i did not take any images of the dramatic change as i quickly changed it back to a more simple design which is the current. I'm...very particular with my styling. After this i directed my attention to the test (done with jest). Initially i was writing them myself and spent...quite a long time on them before i learned that these tests were already provided by the instructor of the program. So then i worked on those for a bit longer before getting them to run perfectly. Probably put in about 20 hours overall.
 
 ![image](images/npm-run-test.png)
