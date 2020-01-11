@@ -84,108 +84,108 @@ const addMember = async () => {
 
   // ========================= This is the 1st set of questions =========================
   // ========================= Captain Prompts =========================
-  const captainQuestions = async () => {
-    const userResult = await inquirer.prompt([
-        {
-          type: "input",
-          name: "name",
-          message: "Please write Crew Member's first name: "
-        },
-        {
-          type: "input",
-          name: "id",
-          message: "Please include Employee ID: "
-        },
-        {
-          type: "input",
-          name: "email",
-          message: "Please include Employee Email: "
-        },
-        {
-          type: "input",
-          name: "shipNumber",
-          message: "Please provide Ship Number: "
-        }
-    ]);
-
-    return userResult
-  }
-
-  // ========================= Stormtrooper Prompts =========================
-  const stormtrooperQuestions = async () => {
-    const userResult = await inquirer.prompt([
-        {
-          type: "input",
-          name: "name",
-          message: "Please write Crew Member's first name: "
-        },
-        {
-          type: "input",
-          name: "id",
-          message: "Please include Employee ID: "
-        },
-        {
-          type: "input",
-          name: "email",
-          message: "Please include Employee Email: "
-        },
-        {
-          type: "input",
-          name: "accuracy",
-          message: "Please provide Stormtrooper's accuracy level: "
-        }
-    ]);
-
-    console.log(JSON.stringify(userResult));
-    return userResult
-  }
-
-  // ========================= Pilot Prompts =========================
-  const pilotQuestions = async () => {
-    const userResult = await inquirer.prompt([
-        {
-          type: "input",
-          name: "name",
-          message: "Please write Crew Member's first name: "
-        },
-        {
-          type: "input",
-          name: "id",
-          message: "Please include Employee ID: "
-        },
-        {
-          type: "input",
-          name: "email",
-          message: "Please include Employee Email: "
-        },
-        {
-          type: "input",
-          name: "school",
-          message: "Please list Pilot's School: "
-        }
-    ]);
-    console.log(JSON.stringify(userResult));
-    return userResult
-  }
-
-  // here user is asked to add more team members
-  const queryToAddMoreTeam = async (title) =>{
-    const queryChoice = await inquirer.prompt([
-        {
-          type: "list",
-          choices: ["Yes", "No"],
-          name: "choice",
-          message: "Would you like to add an additional crew member?"
-        }
-      ]);
-      const choice = queryChoice.choice;
-      console.log("queryChoice: " + queryChoice);
-      console.log("choice: " + choice);
-
-      if (choice === "Yes"){
-        await addMember();
+const captainQuestions = async () => {
+  const userResult = await inquirer.prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Please write Crew Member's first name: "
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Please include Employee ID: "
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please include Employee Email: "
+      },
+      {
+        type: "input",
+        name: "shipNumber",
+        message: "Please provide Ship Number: "
       }
-    };
+  ]);
+
+  return userResult
+}
+
+// ========================= Stormtrooper Prompts =========================
+const stormtrooperQuestions = async () => {
+  const userResult = await inquirer.prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Please write Crew Member's first name: "
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Please include Employee ID: "
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please include Employee Email: "
+      },
+      {
+        type: "input",
+        name: "accuracy",
+        message: "Please provide Stormtrooper's accuracy level: "
+      }
+  ]);
+
+  console.log(JSON.stringify(userResult));
+  return userResult
+}
+
+// ========================= Pilot Prompts =========================
+const pilotQuestions = async () => {
+  const userResult = await inquirer.prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Please write Crew Member's first name: "
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Please include Employee ID: "
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Please include Employee Email: "
+      },
+      {
+        type: "input",
+        name: "school",
+        message: "Please list Pilot's School: "
+      }
+  ]);
+  console.log(JSON.stringify(userResult));
+  return userResult
+}
+
+// here user is asked to add more team members
+const queryToAddMoreTeam = async (title) =>{
+  const queryChoice = await inquirer.prompt([
+    {
+      type: "list",
+      choices: ["Yes", "No"],
+      name: "choice",
+      message: "Would you like to add an additional crew member?"
+    }
+  ]);
+  const choice = queryChoice.choice;
+  console.log("queryChoice: " + queryChoice);
+  console.log("choice: " + choice);
+
+  if (choice === "Yes"){
+    await addMember();
+  }
+};
 
 
 
@@ -352,7 +352,7 @@ body {
       .thingy {
           background-color: white;
           color: black;
-          font-size: 20px;
+          font-size: 16px;
 
           margin: 0;
           padding: 10px;
@@ -408,8 +408,7 @@ const app = async () => {
   console.log("\nGoodbye!");
 };
 
-const promiseOfApp = app();
-promiseOfApp.then(function(){
+app().then(function(){
   console.log('Done');
 }).catch(function(err) {
   console.log('err',err)
