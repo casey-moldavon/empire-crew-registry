@@ -30,6 +30,8 @@ Then i began powering through in the index.js starting with the prompts and inse
 After the reworking of the theme i finished up on the functionality of the code so that it could account for member/crew information and append it to the html before generating it as a file. This took an insane amount of time, research and effort but learned a great deal. I've very happy with the final result.
 
 
+Here is a demo of the process as i did not commit a live version.
+
 ![gif](images/demo-1.gif)
 
 ## Built With
