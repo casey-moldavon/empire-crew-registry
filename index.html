@@ -16,11 +16,15 @@
         }
 
         .heading {
-            background-color: #c53737;
+            background-image: url(images/star-destroyer-new.jpg);
+            background-size: 200px 500px;
+            background-color: black;
+            background-size: cover;
             color: white;
             width: 100%;
-            padding-top: 12px;
-            padding-bottom: 6px;
+            padding-top: 30px;
+            padding-bottom: 42px;
+            height: 400px;
 
             font-weight: bold;
             font-size: 20px;
@@ -34,14 +38,14 @@
 
             margin: 25px;
 
-            border: 0.4px solid #246fc4;
+            border: 0.4px solid Black;
             border-radius: 3px;
             box-shadow: 7px 7px 10px #999999;
         }
 
 
                 .mini-header {
-                    background-color: #246fc4;
+                    background-color: Black;
                     color: white;
 
                     border-top-left-radius: 3px;
@@ -88,13 +92,14 @@
 <body>
 
     <div class="heading">
-        <h1>My Team</h1>
+            <h1 class="h1">Ship Crew</h1>
+        </div>
     </div>
     <div class="col">
             <div class="employee-card">
                 <div class="mini-header">
                     <p class="name">name</p>
-                    <p class="title">title</p>
+                    <p class="title"><i class="fab fa-empire"></i> Title</p>
                 </div>
                 <div class="dem-stats">
                     <p class="thingy" id="id">ID</p>
