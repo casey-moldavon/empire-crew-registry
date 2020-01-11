@@ -164,6 +164,7 @@ const pilotQuestions = async () => {
         message: "Please list Pilot's School: "
       }
   ]);
+
   console.log(JSON.stringify(userResult));
   return userResult
 }
@@ -197,7 +198,7 @@ const queryToAddMoreTeam = async (title) =>{
     let membersHtml = '';
 
     for (const member of members) {
-      if (member.title == 'captain'){
+      if (member.title == 'Captain'){
         const captainCard = `
         <div class="employee-card">
           <div class="mini-header">
@@ -206,7 +207,7 @@ const queryToAddMoreTeam = async (title) =>{
           </div>
           <div class="dem-stats">
               <p class="thingy" id="id">ID: ${member.id}</p>
-              <p class="thingy" id="email">Email: ${member.Email}</p>
+              <p class="thingy" id="email">Email: ${member.email}</p>
               <!-- this changes with each class -->
               <p class="thingy" id="third-thing">Ship Number: ${member.shipNumber}</p>
           </div>
@@ -214,7 +215,7 @@ const queryToAddMoreTeam = async (title) =>{
 
         membersHtml += captainCard;
       }
-      else if (member.title == 'stormtrooper') {
+      else if (member.title == 'Stormtrooper') {
         const stormtrooperCard = `
         <div class="employee-card">
           <div class="mini-header">
@@ -223,7 +224,7 @@ const queryToAddMoreTeam = async (title) =>{
           </div>
           <div class="dem-stats">
               <p class="thingy" id="id">ID: ${member.id}</p>
-              <p class="thingy" id="email">Email: ${member.Email}</p>
+              <p class="thingy" id="email">Email: ${member.email}</p>
               <!-- this changes with each class -->
               <p class="thingy" id="third-thing">Accuracy: ${member.accuracy}</p>
           </div>
@@ -240,7 +241,7 @@ const queryToAddMoreTeam = async (title) =>{
           </div>
           <div class="dem-stats">
               <p class="thingy" id="id">ID: ${member.id}</p>
-              <p class="thingy" id="email">Email: ${member.Email}</p>
+              <p class="thingy" id="email">Email: ${member.email}</p>
               <!-- this changes with each class -->
               <p class="thingy" id="third-thing">School: ${member.school}</p>
           </div>
