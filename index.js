@@ -2,6 +2,7 @@ const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
 const util = require("util");
+const writeFileAsync = util.promisify(fs.writeFile);
 // const Employee = require("./lib/Employee");
 // const Stormtrooper = require("./lib/Engineer");
 // const Pilot = require("./lib/Intern");
@@ -189,28 +190,25 @@ const addMember = async () => {
 
 
 
-
-  const writeFileAsync = util.promisify(fs.writeFile);
-
   //generate the HTML after the first question (team name)
   //then insert each employee card with every prompt (using js)...look at group project 1 for how to do this (search list)
   function generateHTML(teamName, members) {
 
-    const membersHtml = '';
+    let membersHtml = '';
 
-    for (member of members) {
+    for (const member of members) {
       if (member.title == 'captain'){
         const captainCard = `
         <div class="employee-card">
           <div class="mini-header">
-              <p class="name">Name: ${answers.name}</p>
+              <p class="name">Name: ${member.name}</p>
               <p class="title"><i class="fab fa-empire"></i> Title: Captain </p>
           </div>
           <div class="dem-stats">
-              <p class="thingy" id="id">ID: ${answers.id}</p>
-              <p class="thingy" id="email">Email: ${answers.Email}</p>
+              <p class="thingy" id="id">ID: ${member.id}</p>
+              <p class="thingy" id="email">Email: ${member.Email}</p>
               <!-- this changes with each class -->
-              <p class="thingy" id="third-thing">Ship Number: ${answers.shipNumber}</p>
+              <p class="thingy" id="third-thing">Ship Number: ${member.shipNumber}</p>
           </div>
         </div>`;
 
@@ -237,14 +235,14 @@ const addMember = async () => {
         const pilotCard = `
         <div class="employee-card">
           <div class="mini-header">
-              <p class="name">Name: ${answers.name}</p>
+              <p class="name">Name: ${member.name}</p>
               <p class="title"><i class="fab fa-empire"></i> Title: Pilot </p>
           </div>
           <div class="dem-stats">
-              <p class="thingy" id="id">ID: ${answers.id}</p>
-              <p class="thingy" id="email">Email: ${answers.Email}</p>
+              <p class="thingy" id="id">ID: ${member.id}</p>
+              <p class="thingy" id="email">Email: ${member.Email}</p>
               <!-- this changes with each class -->
-              <p class="thingy" id="third-thing">School: ${answers.school}</p>
+              <p class="thingy" id="third-thing">School: ${member.school}</p>
           </div>
         </div>`;
 
@@ -398,20 +396,20 @@ body {
 
   
 const app = async () => {
-  const teamName = await teamName();
+  const teamNameResult = await teamName();
 
   await addMember();
   // at this point, `members` is populated
   
-  const html = generateHTML(teamName, members);
+  const html = generateHTML(teamNameResult, members);
 
   await writeFileAsync("output.html", html);
 
   console.log("\nGoodbye!");
-  process.exit(0);
 };
 
-app.then(function(){
+const promiseOfApp = app();
+promiseOfApp.then(function(){
   console.log('Done');
 }).catch(function(err) {
   console.log('err',err)
