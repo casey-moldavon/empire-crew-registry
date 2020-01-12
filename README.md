@@ -32,7 +32,7 @@ After the reworking of the theme i finished up on the functionality of the code 
 
 Here is a demo of the process as i did not commit a live version.
 
-![gif](images/demo-1.gif)
+![gif](images/demo-1-gif.gif)
 
 ## Built With
 ​
