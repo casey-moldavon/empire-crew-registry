@@ -1,4 +1,4 @@
-# template-engine-employee-summary
+# empire-crew-registry
 
 In this app, The user uses the terminal (node index.js) and is given variuous prompts to build a team, inserting team members with bits of information based on the prompts.
 
